@@ -1,0 +1,154 @@
+@import 'variable';
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: $fontFamily;
+}
+
+body{
+    margin:0;
+    padding:0;
+    font-family: $fontFamily;
+}
+
+.video-grid{
+    display: flex;
+    justify-content: center;
+
+    video{
+        width:300px;
+        padding:1rem;
+    }
+}
+
+
+
+.main{
+    display:flex;
+    height: 100vh;
+}
+
+
+// MAIN LEFT
+.main__left{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+
+    .main__videos{
+        display: flex;
+        flex-grow: 1;
+        justify-content: center;
+        background: lighten($color: $primary, $amount: 42%);
+    }
+
+    .main__controls{
+        display: flex;
+        background:$primary;
+        color: white;
+        padding:1rem;
+        justify-content: space-between;
+        align-items: center;
+
+        .main__controls__block{
+            display: flex;
+
+            .main__controls__button{
+                display:flex;
+                flex-direction: column;
+                align-items: center;
+                padding:0.6rem;
+                cursor: pointer;
+                margin-right:0.5rem;
+                @include basic_transition();
+
+                span{
+                    margin-top:0.5rem;
+                }
+
+                &:last-child{
+                    margin-right: 0;
+                }
+
+                &:hover, &:focus{
+                    background:rgba($color: white, $alpha: 0.1);
+                }
+                
+
+                &.unmute{
+                    color:$red;
+                    // background:rgba($color: $red, $alpha: 0.2);
+
+                    &:hover, &:focus{
+                        background:rgba($color: $red, $alpha: 0.4);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MAIN RIGHT
+.main__right{
+    flex-basis: 28%;
+    display: flex;
+    flex-direction: column;
+
+    .main__header{
+        padding:0.6rem 1rem;
+        background: $primary;
+
+        h6{
+            font-weight: bold;
+            font-size: 1.2rem;
+            color:white;
+            margin:0;
+        }
+    }
+
+    .main__chat__window{
+        flex-grow: 1;
+        padding:1rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column-reverse; 
+        @include scrollbar();       
+        background: lighten($color: $primary, $amount: 35%);
+
+        .messages{
+            margin:0;
+            padding:0;
+
+            li{
+                list-style: none;
+                padding:0.6rem;
+                margin-bottom: 0.5rem;
+                @include border-radius(4px);
+                background: lighten($color: $primary, $amount: 42%);
+
+                b{
+                    font-size: 0.8rem;
+                    font-style: italic;
+                }
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .main__message_container{
+        input{
+            flex-grow: 1;
+            color:$gray-900;
+            border:none;
+            outline:0;
+            padding:0.6rem 1rem;
+            font-size: 1rem;
+            background: lighten($color: $primary, $amount: 45%);
+        }
+    }
+}
